@@ -1,0 +1,21 @@
+export default {
+  TITLE: '模板页面自编辑发布平台',
+  PUBLISH_PAGE: '发布页面',
+  CONFIRE_PUBLISH: '请您先预览页面、确认修改无误后再进行发布',
+  CANCEL: '取消',
+  CONFIRM: '确定',
+  CONFIRM_TEXT1: '确定发布后您的修改将 ',
+  CONFIRM_TEXT2: '即时刷新',
+  CONFIRM_TEXT3: '到官网正式环境！',
+  CONFIRM_TEXT4: '请您确认修改内容无误后，在下方输入您的名称',
+  CONFIRM_TEXT5: '并点击确定按钮',
+  REQUIRED: '请填写您的名称',
+  PATTERN_RIGHT: '请正确输入名称',
+  VERIFICATION: '请先登录openEuler账号验证权限！',
+  LOGIN: '前往登录',
+  CONFIRM_DEL1: '是否确认',
+  CONFIRM_DEL2: '删除',
+  CONFIRM_DEL3: '本楼层？',
+  MARKDOWN_TEMPLATE:
+    '以下为Markdown文档编辑样例：\n# 一级标题\n## 二级标题\n### 三级标题\n#### 四级标题\n正文段落\n\n无序列表\n- 无序列表1\n- 无序列表2\n- 无序列表3\n\n有序列表\n1. 有序列表1\n2. 有序列表2\n3. 有序列表3\n\n文本超链接\n\n[链接](https://www.openeuler.org/zh/)\n\n插入图片\n\n![Description](https://openeuler-website-beijing.obs.cn-north-4.myhuaweicloud.com/detail-banner/euler-logo.png)',
+};
