@@ -1,1 +1,1 @@
-# openEuler easy-editor
+# openGauss easy-editor

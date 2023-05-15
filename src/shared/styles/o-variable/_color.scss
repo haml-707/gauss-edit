@@ -4,17 +4,17 @@
    * 基础色盘
    */
 
-  // 克莱因蓝
-  --o-color-kleinblue1: #000412;
-  --o-color-kleinblue2: #000827;
-  --o-color-kleinblue3: #0c2360;
-  --o-color-kleinblue4: #00288d;
-  --o-color-kleinblue5: #002fa7;
-  --o-color-kleinblue6: #0d3cb4;
-  --o-color-kleinblue7: #2555cd;
-  --o-color-kleinblue8: #406fe7;
-  --o-color-kleinblue9: #5988ff;
-  --o-color-kleinblue10: #b2c0e4;
+  // 交通紫
+  --o-color-trafficpurple1: #2d0a60;
+  --o-color-trafficpurple2: #420f8e;
+  --o-color-trafficpurple3: #5813bc;
+  --o-color-trafficpurple4: #6e1be8;
+  --o-color-trafficpurple5: #7d32ea;
+  --o-color-trafficpurple6: #ba3ff7;
+  --o-color-trafficpurple7: #a358ff;
+  --o-color-trafficpurple8: #bd72ff;
+  --o-color-trafficpurple9: #d68bff;
+  --o-color-trafficpurple10: #e1abff;
 
   // 中性色
   --o-color-neutral1: #121212;
@@ -39,7 +39,7 @@
   --o-color-red7: #ff7873;
   --o-color-red8: #ff928d;
   --o-color-red9: #ffaba6;
-  --o-color-red10: #ffd2af;
+  --o-color-red10: #fabab8;
 
   // 黄色
   --o-color-yellow1: #754c01;
@@ -117,13 +117,13 @@
   --o-color-error3: var(--o-color-red10); // disabled
 
   // 品牌色
-  --o-color-brand1: var(--o-color-kleinblue5); // 常规、文字
-  --o-color-brand2: var(--o-color-kleinblue8); // 悬浮
-  --o-color-brand3: var(--o-color-kleinblue4); // 确认
-  --o-color-brand4: var(--o-color-kleinblue6); // 特殊场景
-  --o-color-brand5: var(--o-color-kleinblue10); // 一般禁用
+  --o-color-brand1: var(--o-color-trafficpurple5); // 常规、文字
+  --o-color-brand2: var(--o-color-trafficpurple8); // 悬浮
+  --o-color-brand3: var(--o-color-trafficpurple4); // 确认
+  --o-color-brand4: var(--o-color-trafficpurple6); // 特殊场景
+  --o-color-brand5: var(--o-color-trafficpurple10); // 一般禁用
   --o-color-brand6: var(
-    --o-color-kleinblue10
+    --o-color-trafficpurple10
   ); // 文字禁用，暂和一般禁用保持一致
 
   // 文字颜色
@@ -132,7 +132,7 @@
   --o-color-text3: var(--o-color-neutral4); // 次强调/正文标题
   --o-color-text4: var(--o-color-neutral6); // 次要信息/正文
   --o-color-text5: var(--o-color-neutral11); // 置灰信息
-  --o-color-text-secondary: var(--o-color-neutral6); // 次级文字颜色
+  --o-color-text-secondary: var(--o-color-neutral5); // 次级文字颜色
 
   // 背景色
   --o-color-bg1: var(--o-color-greyblue3); // 整体背景色
@@ -144,17 +144,19 @@
   --o-color-bg-secondary: var(--o-color-neutral11); // 次级颜色背景颜色
 
   // 链接色
-  --o-color-link1: var(--o-color-kleinblue5); // 常规
-  --o-color-link2: var(--o-color-kleinblue8); // 悬浮
-  --o-color-link3: var(--o-color-kleinblue4); // 点击
-  --o-color-link4: var(--o-color-kleinblue6); // 特殊场景
-  --o-color-link5: var(--o-color-kleinblue10); // 一般禁用
-  --o-color-link6: var(--o-color-kleinblue10); // 文字禁用，暂和一般禁用保持一致
+  --o-color-link1: var(--o-color-trafficpurple5); // 常规
+  --o-color-link2: var(--o-color-trafficpurple8); // 悬浮
+  --o-color-link3: var(--o-color-trafficpurple4); // 点击
+  --o-color-link4: var(--o-color-trafficpurple6); // 特殊场景
+  --o-color-link5: var(--o-color-trafficpurple10); // 一般禁用
+  --o-color-link6: var(
+    --o-color-trafficpurple10
+  ); // 文字禁用，暂和一般禁用保持一致
 
   // 边框颜色
   --o-color-border1: var(--o-color-neutral6);
   --o-color-border2: var(--o-color-neutral11);
-  --o-color-border3: var(--o-color-kleinblue5);
+  --o-color-border3: var(--o-color-trafficpurple5);
 
   // 分割线颜色
   --o-color-division1: var(--o-color-neutral11);

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onUnmounted, Ref, inject, computed, watch } from 'vue';
+import { ref, onUnmounted, Ref, inject, computed, watch, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import draggable from 'vuedraggable';
 
@@ -44,6 +44,8 @@ const scheduleData = ref(
 const dialogTopicTitle = ref('');
 
 const dialogTopicContnet = ref('');
+
+const isInputFocus = ref(false);
 watch(
   () => usePageData().pageData.get(props.scheduleName),
   () => {
@@ -77,6 +79,14 @@ const param = {
   locale: locale.value,
   contentType: 'application/json;charset=UTF-8',
 };
+
+onMounted(() => {
+  // focus 状态禁止拖动。防止无法选中输入框内容
+  document.addEventListener('click', function () {
+    isInputFocus.value =
+      document.querySelector('.edit-summit :focus-within') !== null;
+  });
+});
 
 const delRowDialogVisiable = ref(false);
 
@@ -269,7 +279,7 @@ function savePageData() {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     });
 }
 let timer: TimerType;
@@ -352,6 +362,10 @@ onBeforeRouteLeave((to, from, next) => {
 });
 onUnmounted(() => {
   clearInterval(timer);
+  document.removeEventListener('click', function () {
+    isInputFocus.value =
+      document.querySelector('.edit-summit :focus-within') !== null;
+  });
 });
 </script>
 
@@ -513,19 +527,18 @@ onUnmounted(() => {
               <div class="content-list">
                 <draggable
                   :list="itemList?.content"
-                  ghost-class="ghost"
                   item-key="id"
                   chosen-class="chosen-class"
                   animation="300"
-                  :disabled="!isEditStyle"
+                  :disabled="!isEditStyle || isInputFocus"
                 >
-                  <template #item="{ element, subIndex }">
+                  <template #item="{ element, index }">
                     <div
                       class="content-item"
                       :class="[
                         {
                           'show-detail':
-                            indexShow === subIndex && idShow === listIndex,
+                            indexShow === index && idShow === listIndex,
                         },
                         isEditStyle ? 'move' : '',
                       ]"
@@ -545,7 +558,7 @@ onUnmounted(() => {
                         :class="{ 'exit-detail': element.detail[0] }"
                         @click="
                           !isEditStyle
-                            ? changeIndexShow(listIndex, subIndex as any)
+                            ? changeIndexShow(listIndex, index as any)
                             : ''
                         "
                       >
@@ -560,7 +573,7 @@ onUnmounted(() => {
                         <OIcon
                           v-show="isEditStyle"
                           class="icon-add"
-                          @click="toggleAgendaDlg(true, subIndex)"
+                          @click="toggleAgendaDlg(true, index)"
                         >
                           <IconLinkDefault v-if="!element.detail" />
                           <IconLinkFilled v-else />
@@ -601,14 +614,14 @@ onUnmounted(() => {
                           <span
                             v-show="isEditStyle"
                             class="icon-del"
-                            @click="delPersonData(subIndex, personIndex)"
+                            @click="delPersonData(index, personIndex)"
                             ><span class="tip">删除附属信息</span></span
                           >
                         </div>
                         <OIcon
                           v-show="isEditStyle"
                           class="icon-add"
-                          @click="addPersonData(subIndex)"
+                          @click="addPersonData(index)"
                         >
                           <span class="tip">新增附属信息</span>
                           <IconAdd />
@@ -640,7 +653,7 @@ onUnmounted(() => {
                       <span
                         v-if="isEditStyle"
                         class="icon-del del-content"
-                        @click="delContent(subIndex)"
+                        @click="delContent(index)"
                         ><span class="tip">删除此行</span></span
                       >
                     </div>
@@ -750,7 +763,7 @@ onUnmounted(() => {
 }
 
 .chosen-class {
-  background-color: var(--o-color-bg4);
+  box-shadow: var(--o-shadow-l2_hover);
 }
 .move {
   cursor: move;
@@ -1108,17 +1121,18 @@ onUnmounted(() => {
     position: relative;
     border: 1px solid transparent;
     transition: all 0.3s;
-    min-height: 36px;
+    min-height: 51px;
     :deep(.el-input) {
       .el-input__inner {
         color: #707070;
       }
     }
-    &:not(:hover) .empty {
+    &:not(:focus-within):not(:hover) .empty {
       display: none;
     }
     .empty {
-      textarea {
+      :deep(textarea) {
+        max-height: 64px !important;
         font-size: 14px;
       }
     }
@@ -1133,6 +1147,9 @@ onUnmounted(() => {
     &:focus-within {
       border: 1px solid var(--o-color-brand1);
       box-shadow: none;
+      .name {
+        display: inline-block !important;
+      }
       .post {
         border-left: 1px solid var(--o-color-brand1);
       }
@@ -1260,6 +1277,14 @@ onUnmounted(() => {
     align-items: center;
     // min-height: 64px;
     position: relative;
+    &:hover {
+      .name-box {
+        .icon-add,
+        .icon-del {
+          display: block;
+        }
+      }
+    }
     & + .content-item {
       border-top: 1px solid var(--o-color-border2);
     }
@@ -1275,12 +1300,7 @@ onUnmounted(() => {
     }
     .name-box {
       position: relative;
-      &:hover {
-        .icon-add,
-        .icon-del {
-          display: block;
-        }
-      }
+
       .icon-add,
       .icon-del {
         display: none;
