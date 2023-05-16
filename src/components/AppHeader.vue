@@ -8,7 +8,7 @@ import { useLangStore } from '@/stores';
 import OIcon from '@/components/OIcon.vue';
 
 import { showGuard, logout, getUserAuth, useStoreData } from '@/shared/login';
-import communityLogoWhite from '@/assets/common/header/openeuler-logo.png';
+import communityLogoWhite from '@/assets/common/header/gauss-logo.png';
 import IconLogin from '~icons/app/icon-login.svg';
 
 const { t } = useI18n();

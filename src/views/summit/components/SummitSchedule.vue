@@ -4,7 +4,11 @@ import { useI18n } from 'vue-i18n';
 import draggable from 'vuedraggable';
 
 import { onBeforeRouteLeave } from 'vue-router';
-import { modifyFloorData, getSingleFloorData } from '@/api/api-easy-edit';
+import {
+  modifyFloorData,
+  getSingleFloorData,
+  createPage,
+} from '@/api/api-easy-edit';
 
 import data from '@/data';
 
@@ -49,9 +53,15 @@ const isInputFocus = ref(false);
 watch(
   () => usePageData().pageData.get(props.scheduleName),
   () => {
-    scheduleData.value = JSON.parse(
-      usePageData().pageData.get(props.scheduleName).content
-    );
+    try {
+      if (!props.scheduleName) return;
+      if (!usePageData().pageData.get(props.scheduleName)) return;
+      scheduleData.value = JSON.parse(
+        usePageData().pageData.get(props.scheduleName)?.content
+      );
+    } catch (error) {
+      console.error(error);
+    }
   },
   {
     deep: true,
@@ -60,24 +70,29 @@ watch(
 watch(
   () => scheduleData.value,
   () => {
-    usePageData().pageData.get(props.scheduleName).content = JSON.stringify(
-      scheduleData.value
-    );
+    try {
+      if (!usePageData().pageData.get(props.scheduleName)) return;
+      usePageData().pageData.get(props.scheduleName).content = JSON.stringify(
+        scheduleData.value
+      );
+    } catch (error) {
+      console.error(error);
+    }
   },
   {
     deep: true,
   }
 );
 const param = {
-  content: '',
+  content: '222',
   name: props.scheduleName,
   description: '',
-  path: 'https://www.openeuler.org/zh/interaction/summit-list/devday2023/',
-  title: '',
+  path: 'https://opengauss.org/zh/summit/devday2023/',
+  title: 'openGauss-devday2023',
   isPrivate: false,
   type: 'event',
   locale: locale.value,
-  contentType: 'application/json;charset=UTF-8',
+  contentType: 'text/plain',
 };
 
 onMounted(() => {
@@ -328,15 +343,12 @@ function confirmSaveAgenda() {
 function toggleDelTabDlg(val: boolean) {
   delTabDialogVisiable.value = val;
 }
-// function createNewPage() {
-//   param.content = JSON.stringify(data);
-//   createPage(param).then(() => {
-//     ElMessage({
-//       type: 'success',
-//       message: '成功',
-//     });
-//   });
-// }
+function createNewPage() {
+  param.content = JSON.stringify(data);
+  createPage(param).then((res) => {
+    console.log(res);
+  });
+}
 const tabType1 = ref(0);
 const agendaData2 = ref([]);
 watch(
@@ -751,10 +763,10 @@ onUnmounted(() => {
       >
     </template>
   </el-dialog>
-  <!-- <div v-show="isEditStyle" class="contoral-box">
+  <div v-show="isEditStyle" class="contoral-box">
     <o-button size="small" type="primary" @click="savePageData">保存</o-button>
     <o-button @click="createNewPage">保存</o-button>
-  </div> -->
+  </div>
 </template>
 
 <style lang="scss" scoped>

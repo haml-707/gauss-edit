@@ -31,10 +31,10 @@ function setShowIndex(index: number) {
         </div>
       </div>
       <div v-show="showIndex === 0">
-        <SummitSchedule schedule-name="schedule-20" />
+        <SummitSchedule schedule-name="schedule-25" />
       </div>
       <div v-show="showIndex === 1">
-        <SummitSchedule schedule-name="schedule" />
+        <SummitSchedule schedule-name="schedule-26" />
       </div>
     </div>
   </AppEditTemplate>
