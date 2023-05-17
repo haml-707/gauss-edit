@@ -9,7 +9,7 @@ import AppFooter from '@/components/AppFooter.vue';
 import { getAllDataByPath, getDataByVersion } from '@/api/api-easy-edit';
 import { usePageData, useVersionData } from '@/stores';
 
-import imgLogo from '@/assets/common/header/logo.png';
+import imgLogo from '@/assets/common/header/logo.svg';
 
 const { locale } = useI18n();
 

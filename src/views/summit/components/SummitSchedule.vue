@@ -84,11 +84,11 @@ const param = {
   name: props.scheduleName,
   description: '',
   path: 'https://opengauss.org/zh/summit/devday2023/',
-  title: 'openGauss-devday2023',
+  title: '',
   isPrivate: false,
   type: 'event',
   locale: locale.value,
-  contentType: 'text/plain',
+  contentType: 'application/json;charset=UTF-8',
 };
 
 onMounted(() => {

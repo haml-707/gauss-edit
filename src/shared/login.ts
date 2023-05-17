@@ -59,7 +59,7 @@ export function getUserAuth() {
 }
 
 // 退出登录
-export function logout(community = 'openeuler') {
+export function logout(community = 'opengauss') {
   queryIDToken().then((res) => {
     const idToken = res.data.id_token;
     const client1 = createClient(community);
@@ -80,12 +80,12 @@ export function goToHome() {
 }
 
 function createClient(
-  community = 'openeuler',
+  community = 'opengauss',
   url = import.meta.env.VITE_LOGIN_ORIGIN
 ) {
   const lang = getLanguage();
   const obj: IObject = {
-    openeuler: {
+    opengauss: {
       appId: '62679eab0b22b146d2ea0a3a',
       appHost: 'https://datastat.authing.cn',
       redirectUri: url,
@@ -95,7 +95,7 @@ function createClient(
   if (obj[community]) {
     return new AuthenticationClient(obj[community]);
   }
-  return new AuthenticationClient(obj.openeuler);
+  return new AuthenticationClient(obj.opengauss);
 }
 export function showGuard() {
   const origin = import.meta.env.VITE_LOGIN_ORIGIN;
@@ -121,12 +121,12 @@ export function useStoreData() {
 }
 
 // 刷新页面后store内参数被清除，需重新设定
-export function setStoreData(community = 'openeuler') {
+export function setStoreData(community = 'opengauss') {
   refreshInfo(community);
 }
 
 // 刷新后重新请求登录用户信息
-export async function refreshInfo(community = 'openeuler') {
+export async function refreshInfo(community = 'opengauss') {
   const { token } = getUserAuth();
   if (token) {
     const { guardAuthClient } = useStoreData();
@@ -144,7 +144,7 @@ export function isLogined() {
   return new Promise((resolve, reject) => {
     const { token } = getUserAuth();
     if (token) {
-      queryPermission({ community: 'openeuler' })
+      queryPermission({ community: 'opengauss' })
         .then((res) => {
           const { data } = res;
           if (data) {
