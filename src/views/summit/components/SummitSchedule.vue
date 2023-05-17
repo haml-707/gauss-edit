@@ -4,11 +4,7 @@ import { useI18n } from 'vue-i18n';
 import draggable from 'vuedraggable';
 
 import { onBeforeRouteLeave } from 'vue-router';
-import {
-  modifyFloorData,
-  getSingleFloorData,
-  createPage,
-} from '@/api/api-easy-edit';
+import { modifyFloorData, getSingleFloorData } from '@/api/api-easy-edit';
 
 import data from '@/data';
 
@@ -84,7 +80,7 @@ watch(
   }
 );
 const param = {
-  content: '222',
+  content: '',
   name: props.scheduleName,
   description: '',
   path: 'https://opengauss.org/zh/summit/devday2023/',
@@ -343,12 +339,12 @@ function confirmSaveAgenda() {
 function toggleDelTabDlg(val: boolean) {
   delTabDialogVisiable.value = val;
 }
-function createNewPage() {
-  param.content = JSON.stringify(data);
-  createPage(param).then((res) => {
-    console.log(res);
-  });
-}
+// function createNewPage() {
+//   param.content = JSON.stringify(data);
+//   createPage(param).then((res) => {
+//     console.log(res);
+//   });
+// }
 const tabType1 = ref(0);
 const agendaData2 = ref([]);
 watch(
@@ -763,10 +759,10 @@ onUnmounted(() => {
       >
     </template>
   </el-dialog>
-  <div v-show="isEditStyle" class="contoral-box">
+  <!-- <div v-show="isEditStyle" class="contoral-box">
     <o-button size="small" type="primary" @click="savePageData">保存</o-button>
     <o-button @click="createNewPage">保存</o-button>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss" scoped>
