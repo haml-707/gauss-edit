@@ -18,16 +18,16 @@ function setShowIndex(index: number) {
           :class="{ active: showIndex === 0 }"
           @click="setShowIndex(0)"
         >
-          <p class="date-day">20</p>
-          <p class="date-month">APRIL</p>
+          <p class="date-day">25</p>
+          <p class="date-month">MAY</p>
         </div>
         <div
           class="date-item"
           :class="{ active: showIndex === 1 }"
           @click="setShowIndex(1)"
         >
-          <p class="date-day">21</p>
-          <p class="date-month">APRIL</p>
+          <p class="date-day">26</p>
+          <p class="date-month">MAY</p>
         </div>
       </div>
       <div v-show="showIndex === 0">

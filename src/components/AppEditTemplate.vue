@@ -23,9 +23,7 @@ const pathMap: any = {
 };
 
 const path = ref(
-  `https://www.opengauss.org/${locale.value}/${
-    pathMap[route.path.split('/')[3]]
-  }`
+  `https://opengauss.org/${locale.value}/${pathMap[route.path.split('/')[3]]}`
 );
 
 const modeType = inject('modeType');
