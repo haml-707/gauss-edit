@@ -258,11 +258,6 @@ function addSubtitle2() {
             name: '',
             post: '',
           },
-          {
-            id: window.crypto.randomUUID(),
-            name: '',
-            post: '',
-          },
         ],
         detail: '',
       },
@@ -455,10 +450,11 @@ onUnmounted(() => {
             : true
         "
       >
-        <div class="schedule-title">
+        <div v-if="scheduleItem.lable || isEditStyle" class="schedule-title">
           <el-input
             v-model="scheduleItem.lable"
             :readonly="!isEditStyle"
+            placeholder="输入日程标题"
             type="text"
           />
         </div>
