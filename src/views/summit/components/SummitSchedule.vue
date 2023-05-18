@@ -6,7 +6,7 @@ import draggable from 'vuedraggable';
 import { onBeforeRouteLeave } from 'vue-router';
 import { modifyFloorData, getSingleFloorData } from '@/api/api-easy-edit';
 
-// import data from '@/data';
+import data from '@/data';
 // import data1 from '@/data/agenda-2';
 
 import OIcon from '@/components/OIcon.vue';
