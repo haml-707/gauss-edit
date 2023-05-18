@@ -86,7 +86,10 @@ const handleCurrentChange = (val: number) => {
 function getPageData(isFirstGet: boolean) {
   profileData(optionQuery).then((res) => {
     if (res?.statusCode === 200) {
-      editData.value = res.data;
+      // 只展示 gauss 数据
+      editData.value = res.data.filter((item: EditData) => {
+        return item.path.includes('opengauss');
+      });
       if (isFirstGet) {
         pageNameList.value = [];
         pageTypeList.value = [];

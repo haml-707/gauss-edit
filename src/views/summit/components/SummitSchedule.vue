@@ -6,7 +6,8 @@ import draggable from 'vuedraggable';
 import { onBeforeRouteLeave } from 'vue-router';
 import { modifyFloorData, getSingleFloorData } from '@/api/api-easy-edit';
 
-import data from '@/data';
+// import data from '@/data';
+// import data1 from '@/data/agenda-2';
 
 import OIcon from '@/components/OIcon.vue';
 import { OButton } from '@/components/button';
@@ -272,10 +273,10 @@ function addSubtitle2() {
 }
 // 保存页面数据
 function savePageData() {
-  // if (props.scheduleName === 'schedule') {
-  //   param.content = data.content;
+  // if (props.scheduleName === 'schedule-25') {
+  //   param.content = JSON.stringify(data);
   // } else {
-  //   param.content = data.content1;
+  //   param.content = JSON.stringify(data1);
   // }
   param.content = JSON.stringify(scheduleData.value);
   modifyFloorData(param)
@@ -388,7 +389,7 @@ onUnmounted(() => {
       />
     </h4> -->
     <el-tabs
-      v-if="scheduleName === 'schedule'"
+      v-if="scheduleName === 'schedule-26'"
       v-model.number="tabType1"
       class="schedule-tabs"
     >
@@ -447,14 +448,14 @@ onUnmounted(() => {
     >
       <template
         v-if="
-          scheduleName === 'schedule'
+          scheduleName === 'schedule-26'
             ? tabType1 === 0
               ? index === 0
               : index !== 0
             : true
         "
       >
-        <div v-if="scheduleName === 'schedule'" class="schedule-title">
+        <div class="schedule-title">
           <el-input
             v-model="scheduleItem.lable"
             :readonly="!isEditStyle"
@@ -536,8 +537,8 @@ onUnmounted(() => {
                 <draggable
                   :list="itemList?.content"
                   item-key="id"
+                  ghost-class="ghost"
                   chosen-class="chosen-class"
-                  animation="300"
                   :disabled="!isEditStyle || isInputFocus"
                 >
                   <template #item="{ element, index }">
@@ -773,6 +774,7 @@ onUnmounted(() => {
 .chosen-class {
   box-shadow: var(--o-shadow-l2_hover);
 }
+
 .move {
   cursor: move;
 }
