@@ -1281,7 +1281,6 @@ onUnmounted(() => {
     padding: 20px 0;
     transition: all 0.25s ease;
     align-items: center;
-    // min-height: 64px;
     position: relative;
     &:hover {
       .name-box {
@@ -1291,8 +1290,8 @@ onUnmounted(() => {
         }
       }
     }
-    & + .content-item {
-      border-top: 1px solid var(--o-color-border2);
+    & {
+      border-bottom: 1px solid var(--o-color-border2);
     }
 
     @media screen and (max-width: 1328px) {
