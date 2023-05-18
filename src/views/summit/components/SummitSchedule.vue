@@ -7,7 +7,7 @@ import { onBeforeRouteLeave } from 'vue-router';
 import { modifyFloorData, getSingleFloorData } from '@/api/api-easy-edit';
 
 import data from '@/data';
-// import data1 from '@/data/agenda-2';
+import data1 from '@/data/agenda-2';
 
 import OIcon from '@/components/OIcon.vue';
 import { OButton } from '@/components/button';
@@ -268,12 +268,12 @@ function addSubtitle2() {
 }
 // 保存页面数据
 function savePageData() {
-  // if (props.scheduleName === 'schedule-25') {
-  //   param.content = JSON.stringify(data);
-  // } else {
-  //   param.content = JSON.stringify(data1);
-  // }
-  param.content = JSON.stringify(scheduleData.value);
+  if (props.scheduleName === 'schedule-25') {
+    param.content = JSON.stringify(data);
+  } else {
+    param.content = JSON.stringify(data1);
+  }
+  // param.content = JSON.stringify(scheduleData.value);
   modifyFloorData(param)
     .then((res: { statusCode: number }) => {
       if (res?.statusCode !== 200) {
