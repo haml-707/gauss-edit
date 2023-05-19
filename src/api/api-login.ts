@@ -10,10 +10,12 @@ import { ElMessage } from 'element-plus';
 /**
  * 获取授权的相关回调链接
  */
-type queryPermissionParams = {
-  community: string;
+
+const params = {
+  community: 'opengauss',
+  client_id: '90aa315f895544359209920da32ff75a',
 };
-export function queryPermission(params: queryPermissionParams) {
+export function queryPermission() {
   const url = '/api-omapi/oneid/personal/center/user';
   const { token } = getUserAuth();
 
@@ -47,6 +49,7 @@ export function queryIDToken() {
   const { token } = getUserAuth();
   return request
     .get(url, {
+      params,
       $doException: true,
       headers: {
         token,

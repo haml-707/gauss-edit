@@ -1,11 +1,7 @@
 import { queryPermission, queryIDToken } from '../api/api-login';
 import { useLogin } from '../stores/login';
 import { storeToRefs } from 'pinia';
-import { AuthenticationClient } from 'authing-js-sdk';
 
-interface IObject<T = any> {
-  [key: string]: T;
-}
 const LOGIN_KEYS = {
   USER_TOKEN: '_U_T_',
 };
@@ -59,17 +55,10 @@ export function getUserAuth() {
 }
 
 // 退出登录
-export function logout(community = 'openeuler') {
-  queryIDToken().then((res) => {
-    const idToken = res.data.id_token;
-    const client1 = createClient(community);
-    const logoutUrl = client1.buildLogoutUrl({
-      expert: true,
-      redirectUri: `${window?.location?.origin}`,
-      idToken,
-    });
+export function logout() {
+  queryIDToken().then(() => {
     saveUserAuth();
-    window!.location!.href = logoutUrl;
+    window!.location!.href = location.href;
   });
 }
 
@@ -79,24 +68,6 @@ export function goToHome() {
   // window?.location?.reload();
 }
 
-function createClient(
-  community = 'opengauss',
-  url = import.meta.env.VITE_LOGIN_ORIGIN
-) {
-  const lang = getLanguage();
-  const obj: IObject = {
-    opengauss: {
-      appId: '62679eab0b22b146d2ea0a3a',
-      appHost: 'https://datastat.authing.cn',
-      redirectUri: url,
-      lang: lang.language,
-    },
-  };
-  if (obj[community]) {
-    return new AuthenticationClient(obj[community]);
-  }
-  return new AuthenticationClient(obj.opengauss);
-}
 export function showGuard() {
   const origin = import.meta.env.VITE_LOGIN_ORIGIN;
   const { lang } = getLanguage();
@@ -121,16 +92,16 @@ export function useStoreData() {
 }
 
 // 刷新页面后store内参数被清除，需重新设定
-export function setStoreData(community = 'opengauss') {
-  refreshInfo(community);
+export function setStoreData() {
+  refreshInfo();
 }
 
 // 刷新后重新请求登录用户信息
-export async function refreshInfo(community = 'opengauss') {
+export async function refreshInfo() {
   const { token } = getUserAuth();
   if (token) {
     const { guardAuthClient } = useStoreData();
-    await queryPermission({ community }).then((res) => {
+    await queryPermission().then((res) => {
       const { data } = res;
       if (Object.prototype.toString.call(data) === '[object Object]') {
         guardAuthClient.value = data;
@@ -144,7 +115,7 @@ export function isLogined() {
   return new Promise((resolve, reject) => {
     const { token } = getUserAuth();
     if (token) {
-      queryPermission({ community: 'opengauss' })
+      queryPermission()
         .then((res) => {
           const { data } = res;
           if (data) {
