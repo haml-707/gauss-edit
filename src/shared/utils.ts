@@ -180,12 +180,12 @@ export function isUserActive(active: any, unActive: any) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(unActiveCallback, 30 * 60 * 1000);
   }
-
+  // 30分钟时更新token，留30s 容错时间刷新
   function activeCallback() {
     if (timeoutId && !intervalTimeoutId) {
       intervalTimeoutId = setInterval(() => {
         active();
-      }, 15 * 60 * 1000);
+      }, 15 * 60 * 1000 + 15 * 1000);
     }
     resetTimer();
   }
