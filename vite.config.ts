@@ -66,7 +66,7 @@ export default defineConfig({
     port: 80,
     proxy: {
       '/api-edit/': {
-        target: 'https://easyeditor.openeuler.org/api/',
+        target: 'https://easyeditor.opengauss.org/api/',
         // target: 'https://easyeditor.test.osinfra.cn/api/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api-edit/, ''),

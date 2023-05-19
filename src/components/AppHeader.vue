@@ -158,6 +158,7 @@ const jumpToUserZone = () => {
       border-radius: 50%;
       cursor: pointer;
       vertical-align: middle;
+      background-color: var(--o-color-white);
       @media (max-width: 1100px) {
         width: 28px;
         height: 28px;
