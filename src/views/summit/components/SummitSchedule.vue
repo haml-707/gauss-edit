@@ -52,7 +52,7 @@ watch(
   () => {
     try {
       if (!props.scheduleName) return;
-      if (!usePageData().pageData.get(props.scheduleName)) return;
+      if (!usePageData().pageData.get(props.scheduleName)?.content) return;
       scheduleData.value = JSON.parse(
         usePageData().pageData.get(props.scheduleName)?.content
       );

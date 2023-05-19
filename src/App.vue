@@ -21,7 +21,7 @@ const { t, locale } = useI18n();
 const route = useRoute();
 const langStore = useLangStore();
 const isEditPage = computed(() => {
-  return route.path.includes('edit');
+  return route.path?.includes('edit');
 });
 const isPreviewMode = ref<boolean>(false);
 function getModeType(val: boolean) {

@@ -51,7 +51,7 @@ router.beforeEach(async (to, from, next) => {
   if (getUserAuth().token) {
     if (to.fullPath.includes('login')) {
       next({
-        path: getUrlParam('redirect').includes('404')
+        path: getUrlParam('redirect')?.includes('404')
           ? '/'
           : getUrlParam('redirect') || '/',
       });

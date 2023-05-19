@@ -21,7 +21,7 @@ export default (err: AxiosError) => {
       case 401:
         if (
           res === 'authentication failed: token expires' ||
-          res?.message.includes('token expires')
+          res?.message?.includes('token expires')
         ) {
           // 清除过期token
           err.message = '您的账号信息已过期，请重新登陆';

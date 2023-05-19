@@ -40,10 +40,10 @@ pageTypeList.value = [];
 // 前端筛选 获取所有siteName, type
 function filterOption() {
   editData.value.forEach((item) => {
-    if (!pageNameList.value.includes(item.siteName)) {
+    if (!pageNameList.value?.includes(item.siteName)) {
       pageNameList.value.push(item.siteName);
     }
-    if (!pageTypeList.value.includes(item.type)) {
+    if (!pageTypeList.value?.includes(item.type)) {
       pageTypeList.value.push(item.type);
     }
   });
