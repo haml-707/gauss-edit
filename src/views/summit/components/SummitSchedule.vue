@@ -269,9 +269,9 @@ function addSubtitle2() {
 // 保存页面数据
 function savePageData() {
   // if (props.scheduleName === 'schedule-25') {
-  //   param.content = JSON.stringify(data);
+  //   param.content = data.content;
   // } else {
-  //   param.content = JSON.stringify(data1);
+  //   param.content = data1.content;
   // }
   param.content = JSON.stringify(scheduleData.value);
   modifyFloorData(param)
@@ -336,7 +336,7 @@ function toggleDelTabDlg(val: boolean) {
   delTabDialogVisiable.value = val;
 }
 // function createNewPage() {
-//   param.content = JSON.stringify(data);
+//   param.content = '';
 //   createPage(param).then((res) => {
 //     console.log(res);
 //   });
