@@ -1277,7 +1277,7 @@ onUnmounted(() => {
   .content-item {
     display: grid;
     min-height: 92px;
-    grid-template-columns: 192px 580px 400px;
+    grid-template-columns: 192px 580px 510px;
     padding: 20px 0;
     transition: all 0.25s ease;
     align-items: center;
@@ -1294,7 +1294,7 @@ onUnmounted(() => {
       border-bottom: 1px solid var(--o-color-border2);
     }
 
-    @media screen and (max-width: 1328px) {
+    @media screen and (max-width: 1620px) {
       grid-template-columns: 192px 450px 400px;
     }
     @media screen and (max-width: 1100px) {
